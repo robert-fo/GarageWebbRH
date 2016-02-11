@@ -8,5 +8,9 @@ namespace GarageWebbRH.DataAccessLayer
 {
     public class ItemContext : DbContext
     {
+        public ItemContext() : base("DefaultConnection") { }
+
+        public DbSet<Models.Fordon> Fordon { get; set; }
+        public DbSet<Models.Garage> Garage { get; set; }
     }
 }
