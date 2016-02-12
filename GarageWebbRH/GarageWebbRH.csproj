@@ -167,26 +167,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602121000376_initial.cs" />
-    <Compile Include="Migrations\201602121000376_initial.Designer.cs">
-      <DependentUpon>201602121000376_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602121146428_initial1.cs" />
-    <Compile Include="Migrations\201602121146428_initial1.Designer.cs">
-      <DependentUpon>201602121146428_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602121148595_initial2.cs" />
-    <Compile Include="Migrations\201602121148595_initial2.Designer.cs">
-      <DependentUpon>201602121148595_initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602121221106_initial3.cs" />
-    <Compile Include="Migrations\201602121221106_initial3.Designer.cs">
-      <DependentUpon>201602121221106_initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602121248014_initial4.cs" />
-    <Compile Include="Migrations\201602121248014_initial4.Designer.cs">
-      <DependentUpon>201602121248014_initial4.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fordon.cs" />
@@ -274,23 +254,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602121000376_initial.resx">
-      <DependentUpon>201602121000376_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602121146428_initial1.resx">
-      <DependentUpon>201602121146428_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602121148595_initial2.resx">
-      <DependentUpon>201602121148595_initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602121221106_initial3.resx">
-      <DependentUpon>201602121221106_initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602121248014_initial4.resx">
-      <DependentUpon>201602121248014_initial4.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
