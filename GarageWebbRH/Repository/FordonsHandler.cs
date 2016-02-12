@@ -6,7 +6,7 @@ using GarageWebbRH.Models;
 
 namespace GarageWebbRH.Repository
 {
-    public class GargageHandler
+    public class FordonsHandler
     {
         public void test()
         {
