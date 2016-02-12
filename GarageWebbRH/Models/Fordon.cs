@@ -18,5 +18,6 @@ namespace GarageWebbRH.Models
         public int pPlatsNr { get; set; }
         public DateTime? startDatum { get; set; }
         public DateTime? slutDatum { get; set; }
+        public int Garage_garageId { get; set; } // FKey garage, vill man lägga till dett efter det redan blvit automatgenererat i databasen måste det ha samma namn.
     }
 }
