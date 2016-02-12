@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.slutDatum)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Garage_garageId)
+        </th>
         <th></th>
     </tr>
 
@@ -51,6 +54,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.slutDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Garage_garageId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.regNr }) |

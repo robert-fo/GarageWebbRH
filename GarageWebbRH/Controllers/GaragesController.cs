@@ -11,107 +11,107 @@ using GarageWebbRH.Models;
 
 namespace GarageWebbRH.Controllers
 {
-    public class FordonsController : Controller
+    public class GaragesController : Controller
     {
         private ItemContext db = new ItemContext();
 
-        // GET: Fordons
+        // GET: Garages
         public ActionResult Index()
         {
-            return View(db.Fordon.ToList());
+            return View(db.Garage.ToList());
         }
 
-        // GET: Fordons/Details/5
-        public ActionResult Details(string id)
+        // GET: Garages/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordon fordon = db.Fordon.Find(id);
-            if (fordon == null)
+            Garage garage = db.Garage.Find(id);
+            if (garage == null)
             {
                 return HttpNotFound();
             }
-            return View(fordon);
+            return View(garage);
         }
 
-        // GET: Fordons/Create
+        // GET: Garages/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Fordons/Create
+        // POST: Garages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "regNr,agare,fTyp,pDatum,pPlatsNr,startDatum,slutDatum,Garage_garageId")] Fordon fordon)
+        public ActionResult Create([Bind(Include = "garageId,prisLiten,prisStor,antalPlatser")] Garage garage)
         {
             if (ModelState.IsValid)
             {
-                db.Fordon.Add(fordon);
+                db.Garage.Add(garage);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(fordon);
+            return View(garage);
         }
 
-        // GET: Fordons/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Garages/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordon fordon = db.Fordon.Find(id);
-            if (fordon == null)
+            Garage garage = db.Garage.Find(id);
+            if (garage == null)
             {
                 return HttpNotFound();
             }
-            return View(fordon);
+            return View(garage);
         }
 
-        // POST: Fordons/Edit/5
+        // POST: Garages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "regNr,agare,fTyp,pDatum,pPlatsNr,startDatum,slutDatum,Garage_garageId")] Fordon fordon)
+        public ActionResult Edit([Bind(Include = "garageId,prisLiten,prisStor,antalPlatser")] Garage garage)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(fordon).State = EntityState.Modified;
+                db.Entry(garage).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(fordon);
+            return View(garage);
         }
 
-        // GET: Fordons/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Garages/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Fordon fordon = db.Fordon.Find(id);
-            if (fordon == null)
+            Garage garage = db.Garage.Find(id);
+            if (garage == null)
             {
                 return HttpNotFound();
             }
-            return View(fordon);
+            return View(garage);
         }
 
-        // POST: Fordons/Delete/5
+        // POST: Garages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Fordon fordon = db.Fordon.Find(id);
-            db.Fordon.Remove(fordon);
+            Garage garage = db.Garage.Find(id);
+            db.Garage.Remove(garage);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
