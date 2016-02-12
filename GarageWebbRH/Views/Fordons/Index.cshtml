@@ -9,6 +9,24 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div style="display: inline-block">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Sök på Regnr: @Html.TextBox("SearchRegNr")
+            <input type="submit" value="Search" />
+        </p>
+    }
+    </div>
+<div style="display: inline-block">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Sök på Ägare: @Html.TextBox("SearchAgare")
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
 <table class="table">
     <tr>
         <th>

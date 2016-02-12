@@ -16,9 +16,29 @@ namespace GarageWebbRH.Controllers
         private ItemContext db = new ItemContext();
 
         // GET: Fordons
-        public ActionResult Index()
+        public ActionResult Index(string searchRegNr, string SearchAgare)
         {
-            return View(db.Fordon.ToList());
+            //return View(db.Fordon.ToList());
+            var fordon = from f in db.Fordon
+                         select f;
+            /* orderby f.pDatum
+            group f by f.fTyp into g
+            select new Group<enum, Fordon> { Key = g.Key, Values = g }; */
+
+            //fordon = fordon.OrderBy(f => f.pDatum);
+            //fordon = fordon.OrderBy(f => f.pDatum).GroupBy(f => f.fTyp).SelectMany(g => g).ToList();
+
+            if (!String.IsNullOrEmpty(searchRegNr))
+            {
+                fordon = fordon.Where(f => f.regNr.Contains(searchRegNr));
+            }
+
+            if (!String.IsNullOrEmpty(SearchAgare))
+            {
+                fordon = fordon.Where(f => f.agare.Contains(SearchAgare));
+            }
+
+            return View(fordon.ToList());
         }
 
         // GET: Fordons/Details/5
