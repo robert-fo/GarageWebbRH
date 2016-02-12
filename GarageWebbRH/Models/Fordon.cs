@@ -12,6 +12,7 @@ namespace GarageWebbRH.Models
     public class Fordon
     {
         [Key]
+        public int FordonId { get; set; }
         public string regNr { get; set; }
         public string agare { get; set; }
         public fordonsTyp fTyp { get; set; }
