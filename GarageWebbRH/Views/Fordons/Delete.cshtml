@@ -1,0 +1,72 @@
+﻿@model GarageWebbRH.Models.Fordon
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Fordon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.agare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fTyp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fTyp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pPlatsNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pPlatsNr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slutDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slutDatum)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

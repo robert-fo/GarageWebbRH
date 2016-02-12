@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GarageWebbRH.Models.Fordon>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.agare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fTyp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pDatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pPlatsNr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.slutDatum)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.agare)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fTyp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pPlatsNr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.slutDatum)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.regNr }) |
+            @Html.ActionLink("Details", "Details", new { id=item.regNr }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.regNr })
+        </td>
+    </tr>
+}
+
+</table>

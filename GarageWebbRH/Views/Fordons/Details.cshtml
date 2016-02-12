@@ -1,0 +1,66 @@
+﻿@model GarageWebbRH.Models.Fordon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Fordon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.agare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.agare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fTyp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fTyp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pPlatsNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pPlatsNr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.slutDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.slutDatum)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.regNr }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
