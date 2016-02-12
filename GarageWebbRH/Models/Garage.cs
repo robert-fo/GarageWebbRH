@@ -13,6 +13,6 @@ namespace GarageWebbRH.Models
         public double prisLiten { get; set; }
         public double prisStor { get; set; }
         public int antalPlatser { get; set; }
-        public virtual List<Fordon> pPlatser { get; set; }
+        public virtual ICollection<Fordon> pPlatser { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GarageWebbRH.Models
 {
@@ -18,6 +19,6 @@ namespace GarageWebbRH.Models
         public int pPlatsNr { get; set; }
         public DateTime? startDatum { get; set; }
         public DateTime? slutDatum { get; set; }
-        public int Garage_garageId { get; set; } // FKey garage, vill man lägga till dett efter det redan blvit automatgenererat i databasen måste det ha samma namn.
+        public int garageId { get; set; } // FK måste ha exakt samma namn som egenskapen i klassen den är beroende av, annars måste ForeignKey användas för arr specificera annat namn.
     }
 }
