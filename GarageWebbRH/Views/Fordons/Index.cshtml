@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<p></p>
 <div style="display: inline-block">
     @using (Html.BeginForm())
     {
@@ -27,6 +28,27 @@
         </p>
     }
 </div>
+</p>
+<p>
+<div style="display: inline-block">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Filtrera på fordonstyp: @Html.DropDownList("FordonsTyp")
+            <input type="submit" value="Filter" />
+        </p>
+    }
+</div>
+<div style="display: inline-block">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Parkerade idag: @Html.CheckBox("bTodaysDate", (bool)ViewBag.bTodaysDate)
+            <input type="submit" value="Filter" />
+        </p>
+    }
+</div>
+</p>
 <table class="table">
     <tr>
         <th>

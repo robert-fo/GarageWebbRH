@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using GarageWebbRH.DataAccessLayer;
 using GarageWebbRH.Models;
+using GarageWebbRH.Repository;
 
 namespace GarageWebbRH.Controllers
 {
@@ -16,29 +17,134 @@ namespace GarageWebbRH.Controllers
         private ItemContext db = new ItemContext();
 
         // GET: Fordons
-        public ActionResult Index(string searchRegNr, string SearchAgare)
+        public ActionResult Index(string searchRegNr, string SearchAgare, string FordonsTyp, bool? bTodaysDate)
         {
             //return View(db.Fordon.ToList());
+
+            Boolean Searched = false;
+            ViewBag.bTodaysDate = false;
+
+            FordonsHandler fHand = new FordonsHandler();
+
+            ViewBag.FordonsTyp = fHand.GetSelectListItems();
+
+            List<Fordon> fordonList = new List<Fordon>();
+
             var fordon = from f in db.Fordon
                          select f;
-            /* orderby f.pDatum
-            group f by f.fTyp into g
-            select new Group<enum, Fordon> { Key = g.Key, Values = g }; */
 
-            //fordon = fordon.OrderBy(f => f.pDatum);
-            //fordon = fordon.OrderBy(f => f.pDatum).GroupBy(f => f.fTyp).SelectMany(g => g).ToList();
+            var groupedFordon = from f in db.Fordon
+                                group f by f.fTyp into g
+                                orderby g.FirstOrDefault().pDatum
+                                select g;
 
             if (!String.IsNullOrEmpty(searchRegNr))
             {
-                fordon = fordon.Where(f => f.regNr.Contains(searchRegNr));
+                //fordon = fordon.Where(f => f.regNr.Contains(searchRegNr));
+                Searched = true;
+                foreach (var group in groupedFordon.ToList())
+                {
+                    foreach (var item in group)
+                    {
+                        if (item.regNr == searchRegNr)
+                        {
+                            fordonList.Add(item);
+                        }
+                    }
+                }
+
             }
 
             if (!String.IsNullOrEmpty(SearchAgare))
             {
-                fordon = fordon.Where(f => f.agare.Contains(SearchAgare));
+                //fordon = fordon.Where(f => f.agare.Contains(SearchAgare));
+                Searched = true;
+                foreach (var group in groupedFordon.ToList())
+                {
+                    foreach (var item in group)
+                    {
+                        if (item.agare == SearchAgare)
+                        {
+                            fordonList.Add(item);
+                        }
+                    }
+                }
             }
 
-            return View(fordon.ToList());
+            if (!String.IsNullOrEmpty(FordonsTyp))
+            {
+                //fordon = fordon.Where(f => f.agare.Contains(SearchAgare));
+                
+                if (FordonsTyp != "Alla")
+                {
+                    fordonsTyp fTyp = fordonsTyp.Bil;
+                    Searched = true;
+
+                    switch (FordonsTyp){
+                        case "Bil":
+                            fTyp = fordonsTyp.Bil;
+                            break;
+                        case "MC":
+                            fTyp = fordonsTyp.MC;
+                            break;
+                        case "Buss":
+                            fTyp = fordonsTyp.Buss;
+                            break;
+                        case "Lastbil":
+                            fTyp = fordonsTyp.Lastbil;
+                            break;
+                    }
+
+                    foreach (var group in groupedFordon.ToList())
+                    {
+                        foreach (var item in group)
+                        {
+                            if (item.fTyp == fTyp)
+                            {
+                                fordonList.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (bTodaysDate == true)
+            {
+                //fordon = fordon.Where(f => f.agare.Contains(SearchAgare));
+                Searched = true;
+                ViewBag.bTodaysDate = true;
+                DateTime tempDate;
+
+                foreach (var group in groupedFordon.ToList())
+                {
+                    foreach (var item in group)
+                    {
+                        tempDate = (DateTime)item.pDatum;
+                        if (tempDate.Date == DateTime.Now.Date)
+                        {
+                            fordonList.Add(item);
+                        }
+                    }
+                }
+            }
+
+            if (Searched == true)
+            {
+                return View(fordonList.ToList());
+            }
+            else
+            {
+                foreach (var group in groupedFordon.ToList())
+                {
+                    foreach (var item in group)
+                    {
+                        fordonList.Add(item);
+                    }
+                }
+                return View(fordonList.ToList());
+            }
+
+            //return View(fordon);
         }
 
         // GET: Fordons/Details/5
@@ -59,6 +165,7 @@ namespace GarageWebbRH.Controllers
         // GET: Fordons/Create
         public ActionResult Create()
         {
+            ViewBag.Date = DateTime.Now;
             return View();
         }
 
@@ -144,5 +251,7 @@ namespace GarageWebbRH.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

@@ -1,6 +1,7 @@
 namespace GarageWebbRH.Migrations
 {
     using GarageWebbRH.Models;
+    using GarageWebbRH.Repository;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
