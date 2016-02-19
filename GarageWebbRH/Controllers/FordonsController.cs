@@ -23,6 +23,13 @@ namespace GarageWebbRH.Controllers
             return View(fordon.ToList());
         }
 
+        // GET: Fordons
+        public ActionResult Index2()
+        {
+            var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
+            return View(fordon.ToList());
+        }
+
         // GET: Fordons/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,7 +53,7 @@ namespace GarageWebbRH.Controllers
             ViewBag.PplatsNr = fHandler.GetSelectListLedigaPlatser();
             DateTime date1 = DateTime.Now;
             ViewBag.Pdatum = date1; //.ToString("yyyy-MM-dd hh:mm");
-            ViewBag.AgareID = new SelectList(db.Agare, "AgareId", "Fnamn");
+            ViewBag.AgareID = fHandler.GetSelectListAgarNamn();
             ViewBag.FtypID = new SelectList(db.Fordonstyp, "FtypId", "Namn");
             return View();
         }
@@ -86,7 +93,7 @@ namespace GarageWebbRH.Controllers
             FordonsHandler fHandler = new FordonsHandler();
 
             ViewBag.PplatsNr = fHandler.GetSelectListLedigaPlatser(fordon.PplatsNr);
-            ViewBag.AgareID = new SelectList(db.Agare, "AgareId", "Fnamn", fordon.AgareID);
+            ViewBag.AgareID = fHandler.GetSelectListAgarNamn(fordon.AgareID);
             ViewBag.FtypID = new SelectList(db.Fordonstyp, "FtypId", "Namn", fordon.FtypID);
             return View(fordon);
         }

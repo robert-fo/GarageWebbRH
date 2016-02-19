@@ -1,22 +1,19 @@
 ﻿@model IEnumerable<GarageWebbRH.Models.Fordon>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index2";
 }
 
-<h2>Parkerade bilar</h2>
+<h2>Parkerade bilar - Detaljerad lista</h2>
 
-<div style="float:left">
-    @Html.ActionLink("Create New", "Create")
-</div>
-<div style="float:right">
-    @Html.ActionLink("Detailed list", "Index2")
-</div>
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
 <table class="table">
     <tr>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.agare.Fnamn)
-        </th>*@
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.fordontyp.Namn)
         </th>
@@ -26,7 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Pdatum)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.PplatsNr)
         </th>
         <th>
@@ -34,15 +31,15 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SlutDatum)
-        </th>*@
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.agare.Fnamn)
-        </td>*@
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.fordontyp.Namn)
         </td>
@@ -52,7 +49,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Pdatum)
         </td>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.PplatsNr)
         </td>
         <td>
@@ -60,7 +57,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SlutDatum)
-        </td>*@
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.FordonId }) |
             @Html.ActionLink("Details", "Details", new { id=item.FordonId }) |
@@ -70,3 +67,6 @@
 }
 
 </table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

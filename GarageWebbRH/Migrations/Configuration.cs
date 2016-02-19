@@ -55,9 +55,9 @@ namespace GarageWebbRH.Migrations
                 );
 
             context.Fordon.AddOrUpdate(
-                    new Fordon { RegNr = "ABC123", AgareID = 11, FtypID = 1, Pdatum = DateTime.Now, PplatsNr = 1, },
-                    new Fordon { RegNr = "BCD234", AgareID = 12, FtypID = 1, Pdatum = DateTime.Now, PplatsNr = 2 },
-                    new Fordon { RegNr = "CDE345", AgareID = 13, FtypID = 1, Pdatum = DateTime.Now, PplatsNr = 3 }
+                    new Fordon { RegNr = "ABC123", AgareID = 5, FtypID = 1, Pdatum = DateTime.Now, PplatsNr = 1, },
+                    new Fordon { RegNr = "BCD234", AgareID = 6, FtypID = 1, Pdatum = DateTime.Now, PplatsNr = 2 },
+                    new Fordon { RegNr = "CDE345", AgareID = 7, FtypID = 1, Pdatum = DateTime.Now, PplatsNr = 3 }
                 );
         }
     }

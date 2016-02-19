@@ -251,6 +251,7 @@
     <Content Include="Views\Agares\Details.cshtml" />
     <Content Include="Views\Agares\Edit.cshtml" />
     <Content Include="Views\Agares\Index.cshtml" />
+    <Content Include="Views\Fordons\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,7 +10,7 @@ using GarageWebbRH.DataAccessLayer;
 
 namespace GarageWebbRH.Repository
 {
- 
+
 
     public class FordonsHandler
     {
@@ -22,7 +22,7 @@ namespace GarageWebbRH.Repository
 
             // Get all values of the Industry enum
             var parkeradeFordon = from f in db.Fordon
-                                select f;
+                                  select f;
 
             int platsnr = 1;
             bool upptagenPlats;
@@ -39,7 +39,7 @@ namespace GarageWebbRH.Repository
                 });
             }
 
-            for (int i = 1 ; i <= 100; i++)
+            for (int i = 1; i <= 100; i++)
             {
                 upptagenPlats = false;
 
@@ -69,5 +69,36 @@ namespace GarageWebbRH.Repository
             return selectList;
         }
 
+        public IEnumerable<SelectListItem> GetSelectListAgarNamn(int AId = 0)
+        {
+            var selectList = new List<SelectListItem>();
+
+            // Get all values of the Industry enum
+            var Agare = from a in db.Agare
+                        select a;
+
+
+            foreach (var AItem in Agare)
+            {
+                if (AId == AItem.AgareId)
+                {
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = AItem.AgareId.ToString(),
+                        Text = AItem.Fnamn + " " + AItem.Enamn,
+                        Selected = true
+                    });
+                }
+                else
+                {
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = AItem.AgareId.ToString(),
+                        Text = AItem.Fnamn + " " + AItem.Enamn
+                    });
+                }
+            }
+            return selectList;
+        }
     }
 }
