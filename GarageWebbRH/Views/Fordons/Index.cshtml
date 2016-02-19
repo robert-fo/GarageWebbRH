@@ -9,71 +9,28 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<p></p>
-<div style="display: inline-block">
-    @using (Html.BeginForm())
-    {
-        <p>
-            Sök på Regnr: @Html.TextBox("SearchRegNr")
-            <input type="submit" value="Search" />
-        </p>
-    }
-    </div>
-<div style="display: inline-block">
-    @using (Html.BeginForm())
-    {
-        <p>
-            Sök på Ägare: @Html.TextBox("SearchAgare")
-            <input type="submit" value="Search" />
-        </p>
-    }
-</div>
-</p>
-<p>
-<div style="display: inline-block">
-    @using (Html.BeginForm())
-    {
-        <p>
-            Filtrera på fordonstyp: @Html.DropDownList("FordonsTyp")
-            <input type="submit" value="Filter" />
-        </p>
-    }
-</div>
-<div style="display: inline-block">
-    @using (Html.BeginForm())
-    {
-        <p>
-            Parkerade idag: @Html.CheckBox("bTodaysDate", (bool)ViewBag.bTodaysDate)
-            <input type="submit" value="Filter" />
-        </p>
-    }
-</div>
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.regNr)
+            @Html.DisplayNameFor(model => model.agare.Fnamn)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.agare)
+            @Html.DisplayNameFor(model => model.fordontyp.Namn)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fTyp)
+            @Html.DisplayNameFor(model => model.RegNr)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pDatum)
+            @Html.DisplayNameFor(model => model.Pdatum)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pPlatsNr)
+            @Html.DisplayNameFor(model => model.PplatsNr)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.startDatum)
+            @Html.DisplayNameFor(model => model.StartDatum)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.slutDatum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.garageId)
+            @Html.DisplayNameFor(model => model.SlutDatum)
         </th>
         <th></th>
     </tr>
@@ -81,28 +38,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.regNr)
+            @Html.DisplayFor(modelItem => item.agare.Fnamn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.agare)
+            @Html.DisplayFor(modelItem => item.fordontyp.Namn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fTyp)
+            @Html.DisplayFor(modelItem => item.RegNr)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pDatum)
+            @Html.DisplayFor(modelItem => item.Pdatum)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pPlatsNr)
+            @Html.DisplayFor(modelItem => item.PplatsNr)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.startDatum)
+            @Html.DisplayFor(modelItem => item.StartDatum)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.slutDatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.garageId)
+            @Html.DisplayFor(modelItem => item.SlutDatum)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.FordonId }) |

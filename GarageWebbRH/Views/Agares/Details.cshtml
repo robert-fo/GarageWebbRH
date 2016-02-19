@@ -1,0 +1,42 @@
+﻿@model GarageWebbRH.Models.Agare
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Agare</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fnamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fnamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Enamn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Enamn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonNr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefonNr)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AgareId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

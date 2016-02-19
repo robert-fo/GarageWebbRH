@@ -14,20 +14,22 @@ namespace GarageWebbRH.Models
         [Key]
         public int FordonId { get; set; }
         [DisplayName("Reg Nr")]
-        public string regNr { get; set; }
-        [DisplayName("Ägare")]
-        public string agare { get; set; }
-        [DisplayName("Fordons Typ")]
-        public fordonsTyp fTyp { get; set; }
+        public string RegNr { get; set; }
+        [DisplayName("Ägare Id")]
+        public int AgareID { get; set; }
+        [ForeignKey("AgareID")]
+	    public virtual Agare agare { get; set; }
+        [DisplayName("Fordonstyp Id")]
+        public int FtypID { get; set; }
+        [ForeignKey("FtypID")]
+        public virtual Fordonstyp fordontyp { get; set; } // Virtual är enklaste sättet att fixa nån bugg
         [DisplayName("Parkeringsdatum")]
-        public DateTime? pDatum { get; set; } // ? Anger att datum kan vara null annars blir det fel vid generering
+        public DateTime? Pdatum { get; set; } // ? Anger att datum kan vara null annars blir det fel vid generering
         [DisplayName("Plats Nr")]
-        public int pPlatsNr { get; set; }
+        public int PplatsNr { get; set; }
         [DisplayName("Startdatum")]
-        public DateTime? startDatum { get; set; }
+        public DateTime? StartDatum { get; set; }
         [DisplayName("Slutdatum")]
-        public DateTime? slutDatum { get; set; }
-        [DisplayName("Garage Id")]
-        public int garageId { get; set; } // FK måste ha exakt samma namn som egenskapen i klassen den är beroende av, annars måste ForeignKey användas för arr specificera annat namn.
-    }
+        public DateTime? SlutDatum { get; set; }
+     }
 }

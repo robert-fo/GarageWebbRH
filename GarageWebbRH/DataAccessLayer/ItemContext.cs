@@ -11,6 +11,7 @@ namespace GarageWebbRH.DataAccessLayer
         public ItemContext() : base("DefaultConnection") { }
 
         public DbSet<Models.Fordon> Fordon { get; set; }
-        public DbSet<Models.Garage> Garage { get; set; }
+        public DbSet<Models.Fordonstyp> Fordonstyp { get; set; }
+        public DbSet<Models.Agare> Agare { get; set; }
     }
 }

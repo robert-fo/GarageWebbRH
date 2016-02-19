@@ -6,70 +6,68 @@ using GarageWebbRH.Models;
 using System.Web.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using GarageWebbRH.DataAccessLayer;
 
 namespace GarageWebbRH.Repository
 {
-    public enum fordonsTyp
-    {
-        [Description("Bil")]
-        Bil,
-        [Description("Motorcyckel")]
-        MC,
-        [Description("Buss")]
-        Buss,
-        [Description("Lastbil")]
-        Lastbil
-    };
+ 
 
     public class FordonsHandler
     {
-        public IEnumerable<SelectListItem> GetSelectListItems()
+        private ItemContext db = new ItemContext();
+
+        public IEnumerable<SelectListItem> GetSelectListLedigaPlatser(int pNr = 0)
         {
             var selectList = new List<SelectListItem>();
 
             // Get all values of the Industry enum
-            var enumValues = Enum.GetValues(typeof(fordonsTyp)) as fordonsTyp[];
-            if (enumValues == null)
-                return null;
+            var parkeradeFordon = from f in db.Fordon
+                                select f;
 
-            // Value and Text to the enum value and description.
-            selectList.Add(new SelectListItem
-            {
-                Value = "Alla",
-                // GetIndustryName just returns the Display.Name value
-                // of the enum - check out the next chapter for the code of this function.
-                Text = "Alla" /* GetFordonsName(enumValue) */
-            });
+            int platsnr = 1;
+            bool upptagenPlats;
 
-            foreach (var enumValue in enumValues)
+            if (pNr != 0)
             {
-                // Create a new SelectListItem element and set its 
                 // Value and Text to the enum value and description.
                 selectList.Add(new SelectListItem
                 {
-                    Value = enumValue.ToString(),
+                    Value = Convert.ToString(pNr),
                     // GetIndustryName just returns the Display.Name value
                     // of the enum - check out the next chapter for the code of this function.
-                    Text = enumValue.ToString() /* GetFordonsName(enumValue) */
+                    Text = Convert.ToString(pNr) /* GetFordonsName(enumValue) */
                 });
+            }
+
+            for (int i = 1 ; i <= 100; i++)
+            {
+                upptagenPlats = false;
+
+                foreach (var fordon in parkeradeFordon)
+                {
+                    if (fordon.PplatsNr == i)
+                    {
+                        upptagenPlats = true;
+                    }
+                }
+
+                if (upptagenPlats == false)
+                {
+                    // Value and Text to the enum value and description.
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = Convert.ToString(platsnr),
+                        // GetIndustryName just returns the Display.Name value
+                        // of the enum - check out the next chapter for the code of this function.
+                        Text = Convert.ToString(platsnr) /* GetFordonsName(enumValue) */
+                    });
+                }
+
+                platsnr++;
             }
 
             return selectList;
         }
 
-        public string GetFordonsName(fordonsTyp value)
-        {
-            // Get the MemberInfo object for the supplied enum value
-            var memberInfo = value.GetType().GetMember(value.ToString());
-            if (memberInfo.Length != 1)
-                return null;
-
-            // Get DisplayAttibute on the supplied enum value
-            var displayAttribute = memberInfo[0].GetCustomAttributes(typeof(DisplayAttribute), false) as DisplayAttribute[];
-            if (displayAttribute == null || displayAttribute.Length != 1)
-                return null;
-
-            return displayAttribute[0].Name;
-        }
     }
 }

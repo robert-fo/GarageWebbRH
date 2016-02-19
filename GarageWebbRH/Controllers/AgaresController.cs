@@ -8,110 +8,111 @@ using System.Web;
 using System.Web.Mvc;
 using GarageWebbRH.DataAccessLayer;
 using GarageWebbRH.Models;
+using GarageWebbRH.Repository;
 
 namespace GarageWebbRH.Controllers
 {
-    public class GaragesController : Controller
+    public class AgaresController : Controller
     {
         private ItemContext db = new ItemContext();
 
-        // GET: Garages
+        // GET: Agares
         public ActionResult Index()
         {
-            return View(db.Garage.ToList());
+            return View(db.Agare.ToList());
         }
 
-        // GET: Garages/Details/5
+        // GET: Agares/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Garage garage = db.Garage.Find(id);
-            if (garage == null)
+            Agare agare = db.Agare.Find(id);
+            if (agare == null)
             {
                 return HttpNotFound();
             }
-            return View(garage);
+            return View(agare);
         }
 
-        // GET: Garages/Create
+        // GET: Agares/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Garages/Create
+        // POST: Agares/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "garageId,prisLiten,prisStor,antalPlatser")] Garage garage)
+        public ActionResult Create([Bind(Include = "AgareId,Fnamn,Enamn,TelefonNr")] Agare agare)
         {
             if (ModelState.IsValid)
             {
-                db.Garage.Add(garage);
+                db.Agare.Add(agare);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(garage);
+            return View(agare);
         }
 
-        // GET: Garages/Edit/5
+        // GET: Agares/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Garage garage = db.Garage.Find(id);
-            if (garage == null)
+            Agare agare = db.Agare.Find(id);
+            if (agare == null)
             {
                 return HttpNotFound();
             }
-            return View(garage);
+            return View(agare);
         }
 
-        // POST: Garages/Edit/5
+        // POST: Agares/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "garageId,prisLiten,prisStor,antalPlatser")] Garage garage)
+        public ActionResult Edit([Bind(Include = "AgareId,Fnamn,Enamn,TelefonNr")] Agare agare)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(garage).State = EntityState.Modified;
+                db.Entry(agare).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(garage);
+            return View(agare);
         }
 
-        // GET: Garages/Delete/5
+        // GET: Agares/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Garage garage = db.Garage.Find(id);
-            if (garage == null)
+            Agare agare = db.Agare.Find(id);
+            if (agare == null)
             {
                 return HttpNotFound();
             }
-            return View(garage);
+            return View(agare);
         }
 
-        // POST: Garages/Delete/5
+        // POST: Agares/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Garage garage = db.Garage.Find(id);
-            db.Garage.Remove(garage);
+            Agare agare = db.Agare.Find(id);
+            db.Agare.Remove(agare);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
