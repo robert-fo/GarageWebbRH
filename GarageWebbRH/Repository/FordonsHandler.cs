@@ -100,5 +100,31 @@ namespace GarageWebbRH.Repository
             }
             return selectList;
         }
+
+        public IEnumerable<SelectListItem> GetSelectListFordonsTyper()
+        {
+            var selectList = new List<SelectListItem>();
+
+            // Get all values of the Industry enum
+            var Fordonstyper = from ft in db.Fordonstyp
+                        select ft;
+
+            selectList.Add(new SelectListItem
+            {
+                Value = "ALLA",
+                Text = "Alla"
+            });
+
+            foreach (var FTitem in Fordonstyper)
+            {
+                    selectList.Add(new SelectListItem
+                    {
+                        Value = FTitem.FtypId.ToString(),
+                        Text = FTitem.Namn
+                    });
+            }
+            return selectList;
+        }
+
     }
 }

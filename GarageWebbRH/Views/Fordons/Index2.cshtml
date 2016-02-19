@@ -5,7 +5,26 @@
 }
 
 <h2>Parkerade bilar - Detaljerad lista</h2>
-
+<p>
+<div style="display: inline-block">
+    @using (Html.BeginForm())
+    {
+<p>
+    Sök på Regnr: @Html.TextBox("SearchRegNr")
+    <input type="submit" value="Search" />
+</p>
+    }
+    </div>
+    <div style="display: inline-block">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Filtrera på fordonstyp: @Html.DropDownList("FordonsTypID")
+                <input type="submit" value="Filter" />
+            </p>
+        }
+    </div>
+    </p>
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
