@@ -126,5 +126,20 @@ namespace GarageWebbRH.Repository
             return selectList;
         }
 
+        public string FordonsTypNamn(int ID)
+        {
+            var Fordonstyper = from ft in db.Fordonstyp
+                      where ft.FtypId == ID
+                          select  ft;
+            string typ = ""; 
+
+            foreach (var FTitem in Fordonstyper)
+            {
+                typ = FTitem.Namn;
+            }
+
+            return typ.ToString();
+        }
+
     }
 }

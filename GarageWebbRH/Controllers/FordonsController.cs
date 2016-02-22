@@ -19,52 +19,50 @@ namespace GarageWebbRH.Controllers
         // GET: Fordons
         public ActionResult Index(string searchRegNr, string FordonsTypID)
         {
-            Boolean Searched = false;
             List<Fordon> fordonList = new List<Fordon>();
             FordonsHandler fHand = new FordonsHandler();
+
+            ViewBag.regnr = searchRegNr;
 
             ViewBag.FordonsTypId = fHand.GetSelectListFordonsTyper();
 
             var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
+
+            var groupedFordon = from f in db.Fordon
+                                group f by f.FtypID into g
+                                orderby g.FirstOrDefault().Pdatum
+                                select new Group<int, Fordon> { Key = g.Key, Values = g };
+
+            ViewBag.Fordonstyper = from ft in db.Fordonstyp
+                               select ft;
 
             if (!String.IsNullOrEmpty(FordonsTypID))
             {
                 
                 if (FordonsTypID != "ALLA")
                 {
-                    Searched = true;
-
-                        foreach (var item in fordon.ToList())
-                        {
-                            if (item.FtypID == Convert.ToInt32(FordonsTypID))
-                            {
-                                fordonList.Add(item);
-                            }
-                        }
+                    int  ftID = Convert.ToInt32(FordonsTypID);
+                    groupedFordon = from f in db.Fordon
+                                    where f.FtypID == ftID
+                                    group f by f.FtypID into g
+                                    orderby g.FirstOrDefault().Pdatum
+                                    select new Group<int, Fordon> { Key = g.Key, Values = g };
                 }
+
             }
 
             if (!String.IsNullOrEmpty(searchRegNr))
             {
-                    Searched = true;
+                string searchReg = searchRegNr.ToLower();
+                groupedFordon = from f in db.Fordon
+                                where f.RegNr.ToLower() == searchReg
+                                group f by f.FtypID into g
+                                orderby g.FirstOrDefault().Pdatum
+                                select new Group<int, Fordon> { Key = g.Key, Values = g };
+            }            
 
-                    foreach (var item in fordon.ToList())
-                    {
-                        if (item.RegNr.ToLower() == searchRegNr.ToLower())
-                        {
-                            fordonList.Add(item);
-                        }
-                    }
-            }
-            
-            if (Searched == true)
-            {
-                return View(fordonList.ToList());
-            }
-            else
-            {
-                return View(fordon.ToList());
-            }
+
+            return View(groupedFordon.ToList());     
  
         }
 

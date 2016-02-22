@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
 using GarageWebbRH.Repository;
+using System.Collections;
 
 namespace GarageWebbRH.Models
 {
@@ -31,5 +32,6 @@ namespace GarageWebbRH.Models
         public DateTime? StartDatum { get; set; }
         [DisplayName("Slutdatum")]
         public DateTime? SlutDatum { get; set; }
-     }
+
+    }
 }
