@@ -1,14 +1,18 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="parkingViewer">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Parkeringsgaraget</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Client/Module.js"></script>
+    <script src="~/Client/Service.js"></script>
+    <script src="~/Client/Controller.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body>
+<body ng-controller="ParkingController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

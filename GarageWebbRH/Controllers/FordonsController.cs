@@ -15,15 +15,21 @@ namespace GarageWebbRH.Controllers
     public class FordonsController : Controller
     {
         private ItemContext db = new ItemContext();
-
-        // GET: Fordons
-        public JsonResult Index2(string searchRegNr, string FordonsTypID)
+ 
+        public ActionResult Index2()
         {
-            Boolean Searched = false;
-            List<Fordon> fordonList = new List<Fordon>();
             FordonsHandler fHand = new FordonsHandler();
 
             ViewBag.FordonsTypId = fHand.GetSelectListFordonsTyper();
+
+            return View();
+        }
+
+        // GET: Fordons
+        public JsonResult GetFordon(string searchRegNr, string FordonsTypID)
+        {
+            Boolean Searched = false;
+            List<Fordon> fordonList = new List<Fordon>();
 
             var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
 
@@ -59,11 +65,11 @@ namespace GarageWebbRH.Controllers
 
             if (Searched == true)
             {
-                return Json(fordonList, JsonRequestBehavior.AllowGet);
+                return Json(fordonList, "text/x-json", JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(fordon, JsonRequestBehavior.AllowGet);
+                return Json(fordon, "text/x-json", JsonRequestBehavior.AllowGet);
             }
         }
 

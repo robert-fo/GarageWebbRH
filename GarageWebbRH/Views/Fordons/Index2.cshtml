@@ -5,87 +5,88 @@
 }
 
 <h2>Parkerade bilar - Detaljerad lista</h2>
-<p>
 <div style="display: inline-block">
     @using (Html.BeginForm())
     {
-<p>
-    Sök på Regnr: @Html.TextBox("SearchRegNr")
-    <input type="submit" value="Search" />
-</p>
+        <p>
+            Sök på Regnr: @Html.TextBox("SearchRegNr")
+            <input type="submit" value="Search" />
+        </p>
     }
-    </div>
-    <div style="display: inline-block">
-        @using (Html.BeginForm())
-        {
-            <p>
-                Filtrera på fordonstyp: @Html.DropDownList("FordonsTypID")
-                <input type="submit" value="Filter" />
-            </p>
-        }
-    </div>
+</div>
+<div style="display: inline-block">
+    @using (Html.BeginForm())
+    {
+        <p>
+            Filtrera på fordonstyp: @Html.DropDownList("FordonsTypID")
+            <input type="submit" value="Filter" />
+        </p>
+    }
+</div>
+
+        </p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Förnamn
+            </th>
+            <th>
+                Fordonstyp
+            </th>
+            <th>
+                Reg Nr
+            </th>
+            <th>
+                Parkeringsdatum
+            </th>
+            <th>
+                Platsnummer
+            </th>
+            <th>
+                Startdatum
+            </th>
+            <th>
+                Slutdatum
+            </th>
+            <th>{{test}}</th>
+        </tr>
+
+        <tr ng-repeat="item in fordon">
+            <td>
+                {{1+1}}
+            </td>
+            @*<td>
+                {{item.fordontyp.Namn}}
+            </td>
+            <td>
+                {{item.RegNr}}
+            </td>
+            <td>
+                {{item.Pdatum}}
+            </td>
+            <td>
+                {{item.PplatsNr}}
+            </td>
+            <td>
+                {{item.StartDatum}}
+            </td>
+            <td>
+                {{item.SlutDatum}}
+            </td>*@
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", {{item.FordonId}}) |
+                    @Html.ActionLink("Details", "Details", {{item.FordonId}}) |
+                    @Html.ActionLink("Delete", "Delete", {{item.FordonId}})*@
+            </td>
+        </tr>
+
+
+    </table>
+    <p>
+        @Html.ActionLink("Back to List", "Index")
     </p>
-<p>
-    @*@Html.ActionLink("Create New", "Create")*@
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.agare.Fnamn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fordontyp.Namn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RegNr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pdatum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PplatsNr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDatum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SlutDatum)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.agare.Fnamn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fordontyp.Namn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegNr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pdatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PplatsNr)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SlutDatum)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FordonId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FordonId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FordonId })
-        </td>
-    </tr>
-}
-
-</table>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

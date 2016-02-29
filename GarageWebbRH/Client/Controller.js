@@ -1,16 +1,21 @@
-﻿(function () {
+﻿(function (app) {
 
     var app = angular.module("parkingViewer");
 
-    var ParkingController = function ($scope, parkingGarage) {
+    var ParkingController = function ($scope, parkingGarage) { //
 
-        $scope.divFordon = false;
-        GetAllFordon();
-        //To Get All Records 
+        $scope.test = "Testar om det syns nåt";
+
+        alert("i ParkingController");
+
+        //$scope.divFordon = false;
+        
+        // To Get All Records 
         function GetAllFordon() {
-            debugger;
-            var getData = parkingGarage.getEmployees();
-            debugger;
+            alert("i GetAllFordon");
+            
+            var getData = parkingGarage.getFordon();
+            
             getData.then(function (emp) {
                 $scope.fordon = emp.data;
             }, function () {
@@ -18,6 +23,7 @@
             });
         }
 
+        GetAllFordon();
     };
 
     app.controller("ParkingController", ParkingController);
