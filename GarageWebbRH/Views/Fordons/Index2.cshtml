@@ -3,90 +3,91 @@
 @{
     ViewBag.Title = "Index2";
 }
+<div ng-controller="ParkingController">
+    <h2>Parkerade bilar - Detaljerad lista</h2>
+    <div style="display: inline-block">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Sök på Regnr: @Html.TextBox("SearchRegNr")
+                <input type="submit" value="Search" />
+            </p>
+        }
+    </div>
+    <div style="display: inline-block">
+        @using (Html.BeginForm())
+        {
+            <p>
+                Filtrera på fordonstyp: @Html.DropDownList("FordonsTypID")
+                <input type="submit" value="Filter" />
+            </p>
+        }
+    </div>
 
-<h2>Parkerade bilar - Detaljerad lista</h2>
-<div style="display: inline-block">
-    @using (Html.BeginForm())
-    {
-        <p>
-            Sök på Regnr: @Html.TextBox("SearchRegNr")
-            <input type="submit" value="Search" />
-        </p>
-    }
-</div>
-<div style="display: inline-block">
-    @using (Html.BeginForm())
-    {
-        <p>
-            Filtrera på fordonstyp: @Html.DropDownList("FordonsTypID")
-            <input type="submit" value="Filter" />
-        </p>
-    }
-</div>
-
-        </p>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div>
-    <table class="table">
-        <tr>
-            <th>
-                Förnamn
-            </th>
-            <th>
-                Fordonstyp
-            </th>
-            <th>
-                Reg Nr
-            </th>
-            <th>
-                Parkeringsdatum
-            </th>
-            <th>
-                Platsnummer
-            </th>
-            <th>
-                Startdatum
-            </th>
-            <th>
-                Slutdatum
-            </th>
-            <th>{{test}}</th>
-        </tr>
-
-        <tr ng-repeat="item in fordon">
-            <td>
-                {{1+1}}
-            </td>
-            @*<td>
-                {{item.fordontyp.Namn}}
-            </td>
-            <td>
-                {{item.RegNr}}
-            </td>
-            <td>
-                {{item.Pdatum}}
-            </td>
-            <td>
-                {{item.PplatsNr}}
-            </td>
-            <td>
-                {{item.StartDatum}}
-            </td>
-            <td>
-                {{item.SlutDatum}}
-            </td>*@
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", {{item.FordonId}}) |
-                    @Html.ActionLink("Details", "Details", {{item.FordonId}}) |
-                    @Html.ActionLink("Delete", "Delete", {{item.FordonId}})*@
-            </td>
-        </tr>
-
-
-    </table>
-    <p>
-        @Html.ActionLink("Back to List", "Index")
     </p>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    Förnamn
+                </th>
+                <th>
+                    Fordonstyp
+                </th>
+                <th>
+                    Reg Nr
+                </th>
+                <th>
+                    Parkeringsdatum
+                </th>
+                <th>
+                    Platsnummer
+                </th>
+                <th>
+                    Startdatum
+                </th>
+                <th>
+                    Slutdatum
+                </th>
+                <th>{{test}}</th>
+            </tr>
+
+            <tr ng-repeat="item in fordon">
+                <td>
+                    {{1+1}}
+                </td>
+                @*<td>
+                        {{item.fordontyp.Namn}}
+                    </td>
+                    <td>
+                        {{item.RegNr}}
+                    </td>
+                    <td>
+                        {{item.Pdatum}}
+                    </td>
+                    <td>
+                        {{item.PplatsNr}}
+                    </td>
+                    <td>
+                        {{item.StartDatum}}
+                    </td>
+                    <td>
+                        {{item.SlutDatum}}
+                    </td>*@
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", {{item.FordonId}}) |
+                        @Html.ActionLink("Details", "Details", {{item.FordonId}}) |
+                        @Html.ActionLink("Delete", "Delete", {{item.FordonId}})*@
+                </td>
+            </tr>
+
+
+        </table>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>

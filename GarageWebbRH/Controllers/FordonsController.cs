@@ -25,51 +25,51 @@ namespace GarageWebbRH.Controllers
             return View();
         }
 
-        // GET: Fordons
-        public JsonResult GetFordon(string searchRegNr, string FordonsTypID)
+        // GET: Fordons, string searchRegNr, string FordonsTypID
+        public JsonResult GetFordon()
         {
             Boolean Searched = false;
             List<Fordon> fordonList = new List<Fordon>();
 
             var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
 
-            if (!String.IsNullOrEmpty(FordonsTypID))
-            {
+            //if (!String.IsNullOrEmpty(FordonsTypID))
+            //{
 
-                if (FordonsTypID != "ALLA")
-                {
-                    Searched = true;
+            //    if (FordonsTypID != "ALLA")
+            //    {
+            //        Searched = true;
 
-                    foreach (var item in fordon.ToList())
-                    {
-                        if (item.FtypID == Convert.ToInt32(FordonsTypID))
-                        {
-                            fordonList.Add(item);
-                        }
-                    }
-                }
-            }
+            //        foreach (var item in fordon.ToList())
+            //        {
+            //            if (item.FtypID == Convert.ToInt32(FordonsTypID))
+            //            {
+            //                fordonList.Add(item);
+            //            }
+            //        }
+            //    }
+            //}
 
-            if (!String.IsNullOrEmpty(searchRegNr))
-            {
-                Searched = true;
+            //if (!String.IsNullOrEmpty(searchRegNr))
+            //{
+            //    Searched = true;
 
-                foreach (var item in fordon.ToList())
-                {
-                    if (item.RegNr.ToLower() == searchRegNr.ToLower())
-                    {
-                        fordonList.Add(item);
-                    }
-                }
-            }
+            //    foreach (var item in fordon.ToList())
+            //    {
+            //        if (item.RegNr.ToLower() == searchRegNr.ToLower())
+            //        {
+            //            fordonList.Add(item);
+            //        }
+            //    }
+            //}
 
             if (Searched == true)
             {
-                return Json(fordonList, "text/x-json", JsonRequestBehavior.AllowGet);
+                return Json(fordonList.ToList(), JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Json(fordon, "text/x-json", JsonRequestBehavior.AllowGet);
+                return Json(fordon.ToList(), JsonRequestBehavior.AllowGet);
             }
         }
 

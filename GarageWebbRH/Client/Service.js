@@ -1,33 +1,15 @@
-﻿//(function () {
+﻿(function () {
 
-//    var parkingGarage = function ($http) {
-
-//        //get All Eployee
-//        var getFordon = function () {
-            
-//            alert("i getFordon");
-//            ////return $http.get("Fordons/Index2");
-//            //return $http.get("Fordons/GetFordon")
-//            //            .success(function (response) {
-//            //                return response.data;
-//            //            });
-//        };
-
-//    };
-
-//    var module = angular.module("parkingViewer");
-//    module.factory("parkingGarage", parkingGarage);
-
-//}());
-
-(function () {
-
-    var parkingGarage = function ($http) {
+    var parkingService = function ($http) {
 
         var getFordon = function () {
-            return $http.get("Fordons/GetFordon")
+            alert("i getFordon servicen");
+
+            return $http.get("/Fordons/GetFordon")
                         .then(function (response) {
                             return response.data;
+                        }, function () {
+                            alert('http.get /Fordons/GetFordon gick fel');
                         });
         };
 
@@ -38,7 +20,7 @@
 
     };
 
-    var module = angular.module("parkingViewer");
-    module.factory("parkingGarage", parkingGarage);
+    var module = angular.module("parkingModule");
+    module.factory("parkingService", parkingService)
 
 }());

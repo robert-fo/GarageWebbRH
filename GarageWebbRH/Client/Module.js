@@ -1,7 +1,7 @@
 ﻿(function () {
 
-    alert("i parkingViewer");
+    alert("i parkingModule");
 
-    var app = angular.module("parkingViewer", []);
+    var app = angular.module("parkingModule", []);
 
 }());

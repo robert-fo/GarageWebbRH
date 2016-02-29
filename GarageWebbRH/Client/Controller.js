@@ -1,8 +1,8 @@
 ﻿(function (app) {
 
-    var app = angular.module("parkingViewer");
+    var app = angular.module("parkingModule");
 
-    var ParkingController = function ($scope, parkingGarage) { //
+    var ParkingController = function ($scope, parkingService) { //
 
         $scope.test = "Testar om det syns nåt";
 
@@ -14,10 +14,10 @@
         function GetAllFordon() {
             alert("i GetAllFordon");
             
-            var getData = parkingGarage.getFordon();
+            var getData = parkingService.getFordon();
             
-            getData.then(function (emp) {
-                $scope.fordon = emp.data;
+            getData.then(function (response) {
+                $scope.fordon = response.data;
             }, function () {
                 alert('Error in getting records');
             });
