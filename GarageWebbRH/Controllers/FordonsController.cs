@@ -17,6 +17,57 @@ namespace GarageWebbRH.Controllers
         private ItemContext db = new ItemContext();
 
         // GET: Fordons
+        public JsonResult Index2(string searchRegNr, string FordonsTypID)
+        {
+            Boolean Searched = false;
+            List<Fordon> fordonList = new List<Fordon>();
+            FordonsHandler fHand = new FordonsHandler();
+
+            ViewBag.FordonsTypId = fHand.GetSelectListFordonsTyper();
+
+            var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
+
+            if (!String.IsNullOrEmpty(FordonsTypID))
+            {
+
+                if (FordonsTypID != "ALLA")
+                {
+                    Searched = true;
+
+                    foreach (var item in fordon.ToList())
+                    {
+                        if (item.FtypID == Convert.ToInt32(FordonsTypID))
+                        {
+                            fordonList.Add(item);
+                        }
+                    }
+                }
+            }
+
+            if (!String.IsNullOrEmpty(searchRegNr))
+            {
+                Searched = true;
+
+                foreach (var item in fordon.ToList())
+                {
+                    if (item.RegNr.ToLower() == searchRegNr.ToLower())
+                    {
+                        fordonList.Add(item);
+                    }
+                }
+            }
+
+            if (Searched == true)
+            {
+                return Json(fordonList, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(fordon, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        // GET: Fordons
         public ActionResult Index(string searchRegNr, string FordonsTypID)
         {
             List<Fordon> fordonList = new List<Fordon>();
@@ -66,56 +117,56 @@ namespace GarageWebbRH.Controllers
  
         }
 
-        // GET: Fordons
-        public ActionResult Index2(string searchRegNr, string FordonsTypID)
-        {
-            Boolean Searched = false;
-            List<Fordon> fordonList = new List<Fordon>();
-            FordonsHandler fHand = new FordonsHandler();
+        //// GET: Fordons
+        //public ActionResult Index2(string searchRegNr, string FordonsTypID)
+        //{
+        //    Boolean Searched = false;
+        //    List<Fordon> fordonList = new List<Fordon>();
+        //    FordonsHandler fHand = new FordonsHandler();
 
-            ViewBag.FordonsTypId = fHand.GetSelectListFordonsTyper();
+        //    ViewBag.FordonsTypId = fHand.GetSelectListFordonsTyper();
 
-            var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
+        //    var fordon = db.Fordon.Include(f => f.agare).Include(f => f.fordontyp);
 
-            if (!String.IsNullOrEmpty(FordonsTypID))
-            {
+        //    if (!String.IsNullOrEmpty(FordonsTypID))
+        //    {
 
-                if (FordonsTypID != "ALLA")
-                {
-                    Searched = true;
+        //        if (FordonsTypID != "ALLA")
+        //        {
+        //            Searched = true;
 
-                    foreach (var item in fordon.ToList())
-                    {
-                        if (item.FtypID == Convert.ToInt32(FordonsTypID))
-                        {
-                            fordonList.Add(item);
-                        }
-                    }
-                }
-            }
+        //            foreach (var item in fordon.ToList())
+        //            {
+        //                if (item.FtypID == Convert.ToInt32(FordonsTypID))
+        //                {
+        //                    fordonList.Add(item);
+        //                }
+        //            }
+        //        }
+        //    }
 
-            if (!String.IsNullOrEmpty(searchRegNr))
-            {
-                Searched = true;
+        //    if (!String.IsNullOrEmpty(searchRegNr))
+        //    {
+        //        Searched = true;
 
-                foreach (var item in fordon.ToList())
-                {
-                    if (item.RegNr.ToLower() == searchRegNr.ToLower())
-                    {
-                        fordonList.Add(item);
-                    }
-                }
-            }
+        //        foreach (var item in fordon.ToList())
+        //        {
+        //            if (item.RegNr.ToLower() == searchRegNr.ToLower())
+        //            {
+        //                fordonList.Add(item);
+        //            }
+        //        }
+        //    }
 
-            if (Searched == true)
-            {
-                return View(fordonList.ToList());
-            }
-            else
-            {
-                return View(fordon.ToList());
-            }
-        }
+        //    if (Searched == true)
+        //    {
+        //        return View(fordonList.ToList());
+        //    }
+        //    else
+        //    {
+        //        return View(fordon.ToList());
+        //    }
+        //}
 
         // GET: Fordons/Details/5
         public ActionResult Details(int? id)
