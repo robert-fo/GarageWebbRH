@@ -1,38 +1,25 @@
-﻿(function (app) {
+﻿(function () {
 
     var app = angular.module("parkingModule");
 
-    var ParkingController = function ($scope, $log, $http) { 
+    var ParkingController = function ($scope, parkingService) {
+        //alert("Controller.js -> i ParkingController");
         //$scope.test = "Testar om det syns nåt";
 
-        $scope.fordon = [];
+        var onGetFordonComplete = function (data) {
+            $scope.fordon = data;
+        };
 
-        //alert("Controller.js -> i ParkingController");
-
-        // To Get All Records 
-        function GetAllFordon() {
-            //alert("Controller.js -> i GetAllFordon");
-
-            //var getData = parkingService.getFordon(); 
-            // fungerare ej att köra http.get via en service...?
-            $http.get("/Fordons/GetFordon")
-                        .then(function (response) {
-                            $log.log("Get Fordon: "+response.data);
-                            $scope.fordon = response.data;
-                        }, function () {
-                            alert('http.get /Fordons/GetFordon gick fel');
-                        });
-
-            $log.log("1");
-            $log.log($scope.fordon);
-            $log.log("2");
-        }
+        var onError = function (reason) {
+            $scope.error = "Could not fetch the data.";
+        };
 
         $scope.orderByMe = function (x) {
             $scope.myOrderBy = x;
         }
 
-        GetAllFordon();
+        parkingService.getFordon().then(onGetFordonComplete, onError);
+
     };
 
     app.controller("ParkingController", ParkingController);

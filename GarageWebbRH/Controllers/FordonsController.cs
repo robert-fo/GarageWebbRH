@@ -16,10 +16,8 @@ namespace GarageWebbRH.Controllers
     {
         private ItemContext db = new ItemContext();
  
-        public ActionResult Index2()
+        public ActionResult IndexNg()
         {
-            FordonsHandler fHand = new FordonsHandler();
-
             return View();
         }
 
