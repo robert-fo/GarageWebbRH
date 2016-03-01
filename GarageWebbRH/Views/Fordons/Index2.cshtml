@@ -6,84 +6,73 @@
 <div ng-controller="ParkingController">
     <h2>Parkerade bilar - Detaljerad lista</h2>
     <div style="display: inline-block">
-        @using (Html.BeginForm())
-        {
-            <p>
-                Sök på Regnr: @Html.TextBox("SearchRegNr")
-                <input type="submit" value="Search" />
-            </p>
-        }
-    </div>
-    <div style="display: inline-block">
-        @using (Html.BeginForm())
-        {
-            <p>
-                Filtrera på fordonstyp: @Html.DropDownList("FordonsTypID")
-                <input type="submit" value="Filter" />
-            </p>
-        }
+        <form>
+            Sök: <input type="text" ng-model="searchText" ng-bind="searchText">
+        </form>
     </div>
 
-    </p>
+    @*</p>*@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
     <div>
-        <table class="table">
+        <table>
             <tr>
-                <th>
+                <th ng-click="orderByMe('agare.Fnamn')">
                     Förnamn
                 </th>
-                <th>
+                <th ng-click="orderByMe('fordontyp.Namn')">
                     Fordonstyp
                 </th>
-                <th>
+                <th ng-click="orderByMe('RegNr')">
                     Reg Nr
                 </th>
-                <th>
+                <th ng-click="orderByMe('Pdatum')">
                     Parkeringsdatum
                 </th>
-                <th>
+                <th ng-click="orderByMe('PplatsNr')">
                     Platsnummer
                 </th>
-                <th>
+                <th ng-click="orderByMe('StartDatum')">
                     Startdatum
                 </th>
-                <th>
+                <th ng-click="orderByMe('SlutDatum')">
                     Slutdatum
                 </th>
-                <th>{{test}}</th>
+                <th></th>
             </tr>
 
-            <tr ng-repeat="item in fordon">
+            <tr ng-repeat="item in fordon | orderBy:myOrderBy | filter:searchText as results" class="animate">
                 <td>
-                    {{1+1}}
+                    {{item.agare.Fnamn}}
                 </td>
-                @*<td>
-                        {{item.fordontyp.Namn}}
-                    </td>
-                    <td>
-                        {{item.RegNr}}
-                    </td>
-                    <td>
-                        {{item.Pdatum}}
-                    </td>
-                    <td>
-                        {{item.PplatsNr}}
-                    </td>
-                    <td>
-                        {{item.StartDatum}}
-                    </td>
-                    <td>
-                        {{item.SlutDatum}}
-                    </td>*@
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", {{item.FordonId}}) |
-                        @Html.ActionLink("Details", "Details", {{item.FordonId}}) |
-                        @Html.ActionLink("Delete", "Delete", {{item.FordonId}})*@
+                    {{item.fordontyp.Namn}}
+                </td>
+                <td>
+                    {{item.RegNr}}
+                </td>
+                <td>
+                    {{item.Pdatum.replace('/Date(', '').replace(')/', '') |  date :  "yyyy-MM-dd HH:mm" }}
+                </td>
+                <td>
+                    {{item.PplatsNr}}
+                </td>
+                <td>
+                    {{item.StartDatum.replace('/Date(', '').replace(')/', '') |  date :  "yyyy-MM-dd HH:mm"}}
+                </td>
+                <td>
+                    {{item.SlutDatum.replace('/Date(', '').replace(')/', '') |  date :  "yyyy-MM-dd HH:mm"}}
+                </td>
+                <td>
+                    <a href="/Fordons/Edit/{{item.FordonId}}">Ändra</a> |
+                    <a href="/Fordons/Details/{{item.FordonId}}">Detaljer</a> |
+                    <a href="/Fordons/Delete/{{item.FordonId}}">Radera</a>
                 </td>
             </tr>
-
+            <tr class="animate" ng-if="results.length == 0">
+                <td colspan="8"><strong>Ingenting hittades...</strong></td>
+            </tr>
 
         </table>
         <p>
