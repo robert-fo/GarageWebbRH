@@ -3,7 +3,7 @@
     var parkingService = function ($http) {
 
         var getFordon = function () {
-            alert("i getFordon servicen");
+            alert("Service.js -> i getFordon servicen");
 
             return $http.get("/Fordons/GetFordon")
                         .then(function (response) {
@@ -13,14 +13,12 @@
                         });
         };
 
-
         return {
             getFordon: getFordon
         };
-
     };
 
     var module = angular.module("parkingModule");
-    module.factory("parkingService", parkingService)
+    module.factory("parkingService", parkingService);
 
 }());

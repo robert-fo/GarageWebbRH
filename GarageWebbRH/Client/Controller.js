@@ -6,16 +6,16 @@
 
         $scope.test = "Testar om det syns nåt";
 
-        alert("i ParkingController");
+        alert("Controller.js -> i ParkingController");
 
         //$scope.divFordon = false;
-        
+
         // To Get All Records 
         function GetAllFordon() {
-            alert("i GetAllFordon");
-            
+            alert("Controller.js -> i GetAllFordon");
+
             var getData = parkingService.getFordon();
-            
+
             getData.then(function (response) {
                 $scope.fordon = response.data;
             }, function () {
