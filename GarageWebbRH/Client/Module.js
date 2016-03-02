@@ -1,7 +1,7 @@
 ﻿(function () {
 
-    alert("Module.js -> i parkingModule");
+    //alert("Module.js -> i parkingModule");
 
-    var app = angular.module("parkingModule", []);
+    var app = angular.module("parkingModule", ['ngAnimate']);
 
 }());

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<GarageWebbRH.Models.Fordon>
+
+@{
+    ViewBag.Title = "Index2";
+}
+<div ng-controller="ParkingController">
+    <h2>Parkerade bilar - Detaljerad lista</h2>
+    <div style="display: inline-block">
+        <form>
+            Sök: <input type="text" ng-model="searchText" ng-bind="searchText">
+        </form>
+    </div>
+
+    @*</p>*@
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div>
+        <table>
+            <tr>
+                <th ng-click="orderByMe('agare.Fnamn')">
+                    Förnamn
+                </th>
+                <th ng-click="orderByMe('fordontyp.Namn')">
+                    Fordonstyp
+                </th>
+                <th ng-click="orderByMe('RegNr')">
+                    Reg Nr
+                </th>
+                <th ng-click="orderByMe('Pdatum')">
+                    Parkeringsdatum
+                </th>
+                <th ng-click="orderByMe('PplatsNr')">
+                    Platsnummer
+                </th>
+                <th ng-click="orderByMe('StartDatum')">
+                    Startdatum
+                </th>
+                <th ng-click="orderByMe('SlutDatum')">
+                    Slutdatum
+                </th>
+                <th></th>
+            </tr>
+
+            <tr ng-repeat="item in fordon | orderBy:myOrderBy | filter:searchText as results" class="animate">
+                <td>
+                    {{item.agare.Fnamn}}
+                </td>
+                <td>
+                    {{item.fordontyp.Namn}}
+                </td>
+                <td>
+                    {{item.RegNr}}
+                </td>
+                <td>
+                    {{item.Pdatum.replace('/Date(', '').replace(')/', '') |  date :  "yyyy-MM-dd HH:mm" }}
+                </td>
+                <td>
+                    {{item.PplatsNr}}
+                </td>
+                <td>
+                    {{item.StartDatum.replace('/Date(', '').replace(')/', '') |  date :  "yyyy-MM-dd HH:mm"}}
+                </td>
+                <td>
+                    {{item.SlutDatum.replace('/Date(', '').replace(')/', '') |  date :  "yyyy-MM-dd HH:mm"}}
+                </td>
+                <td>
+                    <a href="/Fordons/Edit/{{item.FordonId}}">Ändra</a> |
+                    <a href="/Fordons/Details/{{item.FordonId}}">Detaljer</a> |
+                    <a href="/Fordons/Delete/{{item.FordonId}}">Radera</a>
+                </td>
+            </tr>
+            <tr class="animate" ng-if="results.length == 0">
+                <td colspan="8"><strong>Ingenting hittades...</strong></td>
+            </tr>
+
+        </table>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
